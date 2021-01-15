@@ -1,0 +1,3 @@
+[submodule "cif-docker"]
+	path = cif-docker
+	url = https://github.com/sfinlon/cif-docker.git
