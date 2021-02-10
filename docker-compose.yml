@@ -1,0 +1,29 @@
+---
+# This compose configuration spins up a test CIF instance with some seed data as well as a powershell 7 container for development
+# Graciously borrowed from: https://github.com/sfinlon/cif-docker
+
+version: "3.8"
+
+volumes:
+  cif-config:
+  cif-logs:
+  cif-db:
+
+services:
+  cif:
+    build:
+      context: ./docker/cif-docker/cif-docker
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    volumes:
+      - cif-config:/etc/cif
+      - cif-logs:/var/log/cif
+      - cif-db:/var/lib/cif
+
+  pwsh:
+    build:
+      context: ./docker/pwsh
+      dockerfile: Dockerfile
+    volumes:
+      - .:/pwsh
